@@ -44,7 +44,7 @@ public class ThirdPersonMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Moving();
     }
@@ -87,6 +87,10 @@ public class ThirdPersonMovement : MonoBehaviour
     public void Dash() {
         //Quaternion.Euler(0f, transform.rotation.y, 0f) * 
         //rb.AddForce(Vector3.forward * dashForce, ForceMode.Impulse);
+        if(IsGrounded()) {
+            rb.AddRelativeForce(Vector3.forward * dashForce * 2, ForceMode.Impulse);
+        }
+        else
         rb.AddRelativeForce(Vector3.forward * dashForce, ForceMode.Impulse);
     }
 
